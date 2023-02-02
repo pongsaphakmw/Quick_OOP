@@ -1,5 +1,5 @@
 # Write a program by following these requirements:
-# 1. Create function name "find_area" that takes 2 parameters: "shape" and "radius" (default value is 0)
+# 1. Create function name "find_area" that takes 3 parameters: "shape" and "width" and "height" (default value is 0)
 # 2. If shape is "circle", calculate the area of the circle and return the result
 # 3. If shape is "square", calculate the area of the square and return the result
 # 4. If shape is "rectangle", calculate the area of the rectangle and return the result

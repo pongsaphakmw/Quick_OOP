@@ -3,6 +3,7 @@ class Human:
     age = 30
     country = 'USA'
 
+
 class City:
     name = 'New York'
     population = 10000000
@@ -25,20 +26,21 @@ class Flowers:
 
     def change_color(self, new_color):
         self._color = new_color
-    
+
     def change_name(self, new_name):
         self.__name = new_name
 
     def get_name(self):
         return self.__name
 
+    def __str__(self) -> str:
+        return f"Name: {self.__name}, Color: {self._color}, Price: {self.price}"
+
 
 class GroundFlowers(Flowers):
     def __init__(self, name, color, price):
         super().__init__(name, color, price)
 
-
-        
 
 if __name__ == '__main__':
     print(Human)
@@ -89,4 +91,3 @@ if __name__ == '__main__':
     print('Creating a new ground flower')
     new_ground_flower = GroundFlowers('Daisy', 'Blue', 20)
     print('New ground flower name is', new_ground_flower.get_name())
-    
