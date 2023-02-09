@@ -1,52 +1,68 @@
 class Node:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+    def __init__(self, data):
+        self.data = data
+        self.children = []
 
-class Search:
+    def add_child(self, child):
+        self.children.append(child)
+
+    def __str__(self):
+        return self.data
+
+
+class Queue:
     def __init__(self):
-        self.root = None
+        self.items = []
 
-    def insert(self, value):
-        new_node = Node(value)
-        if self.root is None:
-            self.root = new_node
-        else:
-            temp = self.root
-            while temp.next is not None:
-                temp = temp.next
-            temp.next = new_node
+    def enqueue(self, item):
+        self.items.append(item)
+
+    def dequeue(self):
+        return self.items.pop(0)
+
+    def is_empty(self):
+        return self.items == []
+
+
+class Tree:
+    def __init__(self, root):
+        self.root = root
 
     def print_tree(self):
-        temp = self.root
-        while temp is not None:
-            print(temp.value)
-            temp = temp.next
+        def print_tree_helper(node, level):
+            print('-' * level + node.data)
+            for child in node.children:
+                print_tree_helper(child, level + 1)
 
-    def print_size(self):
-        temp = self.root
-        count = 0
-        while temp is not None:
-            count += 1
-            temp = temp.next
-        print(count)
+        print_tree_helper(self.root, 0)
 
-    def search(self, value):
-        temp = self.root
-        while temp is not None:
-            if temp.value == value:
-                return True
-            temp = temp.next
-        return False
+    def breadth_first_search(self, val):
+        queue = Queue()
+        queue.enqueue(self.root)
+        while not queue.is_empty():
+            node = queue.dequeue()
+            if node.data == val:
+                return node
+            for child in node.children:
+                queue.enqueue(child)
+        return None
 
 
 if __name__ == '__main__':
-    s = Search()
-    # Create a breadth-first search tree
-    s.insert(1)
-    s.insert(2)
-    s.insert(3)
-    s.insert(4)
-    s.insert(5)
-    s.print_tree()
-    print(s.search(3))
+    root = Node('Electronics')
+    laptop = Node('Laptop')
+    laptop.add_child(Node('Macbook'))
+    laptop.add_child(Node('Surface'))
+    laptop.add_child(Node('Thinkpad'))
+    tv = Node('TV')
+    tv.add_child(Node('Samsung'))
+    tv.add_child(Node('LG'))
+    tv.add_child(Node('Sony'))
+    root.add_child(laptop)
+    root.add_child(tv)
+    tree = Tree(root)
+    tree.print_tree()
+    print(tree.breadth_first_search('Thinkpad'))
+    print(tree.breadth_first_search('iPhone'))
+    print(tree.breadth_first_search('LG'))
+    print(tree.breadth_first_search('Macbook'))

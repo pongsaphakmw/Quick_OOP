@@ -3,6 +3,7 @@ class Node:
         self.value = value
         self.next = None
 
+
 class Queue:
     def __init__(self):
         self.head = None
@@ -28,7 +29,7 @@ class Queue:
     def print_queue(self):
         temp = self.head
         while temp is not None:
-            print(temp.value)
+            print('remaining queue is ', temp.value)
             temp = temp.next
 
     def is_empty(self):
@@ -40,4 +41,25 @@ class Queue:
         while temp is not None:
             count += 1
             temp = temp.next
-        print(count)
+        print("queue's size ", count)
+
+
+if __name__ == '__main__':
+    queue = Queue()
+    queue.enqueue(1)
+    queue.enqueue(2)
+    queue.enqueue(3)
+    queue.enqueue(4)
+    queue.print_queue()
+    print()
+    queue.dequeue()
+    queue.print_queue()
+    print()
+    queue.print_size()
+    print()
+    print('is queue empthy', queue.is_empty())
+    print()
+    queue.dequeue()
+    queue.dequeue()
+    queue.dequeue()
+    print('is queue empthy', queue.is_empty())
