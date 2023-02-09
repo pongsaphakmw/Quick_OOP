@@ -132,7 +132,7 @@ class Tree:
 if __name__ == '__main__':
     root = Node(8)
     tree = Tree(root)
-    max_case = 3000
+    max_case = 10000
     for i in range(max_case):
         tree.add_node(randint(i, i+100))
     # tree.print_tree()
